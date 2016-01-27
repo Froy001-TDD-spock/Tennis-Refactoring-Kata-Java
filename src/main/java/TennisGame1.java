@@ -1,8 +1,8 @@
 
 public class TennisGame1 implements TennisGame {
     
-    private int m_score1 = 0;
-    private int m_score2 = 0;
+    private int player1Score = 0;
+    private int player2Score = 0;
     private String player1Name;
     private String player2Name;
 
@@ -13,17 +13,16 @@ public class TennisGame1 implements TennisGame {
 
     public void wonPoint(String playerName) {
         if (playerName == "player1")
-            m_score1 += 1;
+            player1Score += 1;
         else
-            m_score2 += 1;
+            player2Score += 1;
     }
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
-        if (m_score1==m_score2)
+        if (scoresAreEqual())
         {
-            switch (m_score1)
+            switch (player1Score)
             {
                 case 0:
                         score = "Love-All";
@@ -40,21 +39,26 @@ public class TennisGame1 implements TennisGame {
                 
             }
         }
-        else if (m_score1>=4 || m_score2>=4)
+        else if (atLeastOneScoreAbove4())
         {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
+            int differenceBetweenScores = player1Score - player2Score;
+            if (differenceBetweenScores==1) score ="Advantage player1";
+            else if (differenceBetweenScores ==-1) score ="Advantage player2";
+            else if (differenceBetweenScores>=2) score = "Win for player1";
             else score ="Win for player2";
         }
         else
         {
+            int currentPlayerScore=0;
             for (int i=1; i<3; i++)
             {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
+                if (i==1)
+                    currentPlayerScore = player1Score;
+                else {
+                    score+="-";
+                    currentPlayerScore = player2Score;
+                }
+                switch(currentPlayerScore)
                 {
                     case 0:
                         score+="Love";
@@ -72,5 +76,13 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score;
+    }
+
+    private boolean atLeastOneScoreAbove4() {
+        return player1Score >=4 || player2Score >=4;
+    }
+
+    private boolean scoresAreEqual() {
+        return player1Score == player2Score;
     }
 }
