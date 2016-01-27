@@ -22,21 +22,11 @@ public class TennisGame1 implements TennisGame {
         String score = "";
         if (scoresAreEqual())
         {
-            switch (player1Score)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
+            if(player1Score > 2) {
+                score = "Deuce";
+            }
+            else {
+                score = nameFor(player1Score) + "-All";
             }
         }
         else if (atLeastOneScoreAbove4())
