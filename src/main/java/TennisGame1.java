@@ -49,17 +49,7 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-            int currentPlayerScore=0;
-            for (int i=1; i<3; i++)
-            {
-                if (i==1)
-                    currentPlayerScore = player1Score;
-                else {
-                    score+="-";
-                    currentPlayerScore = player2Score;
-                }
-                score += nameFor(currentPlayerScore);
-            }
+            score = nameFor(player1Score) + "-" + nameFor(player2Score);
         }
         return score;
     }
