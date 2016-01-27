@@ -58,24 +58,30 @@ public class TennisGame1 implements TennisGame {
                     score+="-";
                     currentPlayerScore = player2Score;
                 }
-                switch(currentPlayerScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
+                score += nameFor(currentPlayerScore);
             }
         }
         return score;
+    }
+
+    private String nameFor(int score) {
+        String name = "";
+        switch(score)
+        {
+            case 0:
+                name+="Love";
+                break;
+            case 1:
+                name+="Fifteen";
+                break;
+            case 2:
+                name+="Thirty";
+                break;
+            case 3:
+                name+="Forty";
+                break;
+        }
+        return name;
     }
 
     private boolean atLeastOneScoreAbove4() {
