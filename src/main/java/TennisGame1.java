@@ -29,19 +29,37 @@ public class TennisGame1 implements TennisGame {
                 score = nameFor(player1Score) + "-All";
             }
         }
-        else if (atLeastOneScoreAbove4())
-        {
-            int differenceBetweenScores = player1Score - player2Score;
-            if (differenceBetweenScores==1) score ="Advantage player1";
-            else if (differenceBetweenScores ==-1) score ="Advantage player2";
-            else if (differenceBetweenScores>=2) score = "Win for player1";
-            else score ="Win for player2";
+        else if (atLeastOneScoreAbove4()) {
+
+            if (advantagePlayer1()) {
+                score = "Advantage player1";
+            } else if (advantagePlayer2()) {
+                score = "Advantage player2";
+            }
+            else if (advantagePlayer1ByTwoOrMorePoints()) {
+                score = "Win for player1";
+            }
+            else {
+                score = "Win for player2";
+            }
         }
         else
         {
             score = nameFor(player1Score) + "-" + nameFor(player2Score);
         }
         return score;
+    }
+
+    private boolean advantagePlayer1ByTwoOrMorePoints() {
+        return player1Score - player2Score >= 2;
+    }
+
+    private boolean advantagePlayer2() {
+        return player1Score - player2Score == -1;
+    }
+
+    private boolean advantagePlayer1() {
+        return player1Score - player2Score == 1;
     }
 
     private String nameFor(int score) {
