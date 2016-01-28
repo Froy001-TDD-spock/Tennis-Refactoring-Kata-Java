@@ -19,33 +19,49 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
         if (scoresAreEqual())
         {
-            if(player1Score > 2) {
-                score = "Deuce";
-            }
-            else {
-                score = nameFor(player1Score) + "-All";
-            }
+            return scoreForTie();
         }
         else if (atLeastOneScoreAbove4()) {
 
-            if (advantagePlayer1()) {
-                score = "Advantage " + player1Name;
-            } else if (advantagePlayer2()) {
-                score = "Advantage " + player2Name;
-            }
-            else if (advantagePlayer1ByTwoOrMorePoints()) {
-                score = "Win for " + player1Name;
-            }
-            else {
-                score = "Win for " + player2Name;
-            }
+            return scoreForAtLeastOneAbove4();
         }
         else
         {
-            score = nameFor(player1Score) + "-" + nameFor(player2Score);
+            return scoreForBothBelow4();
+        }
+    }
+
+    private String scoreForBothBelow4() {
+        String score;
+        score = nameFor(player1Score) + "-" + nameFor(player2Score);
+        return score;
+    }
+
+    private String scoreForAtLeastOneAbove4() {
+        String score;
+        if (advantagePlayer1()) {
+            score = "Advantage " + player1Name;
+        } else if (advantagePlayer2()) {
+            score = "Advantage " + player2Name;
+        }
+        else if (advantagePlayer1ByTwoOrMorePoints()) {
+            score = "Win for " + player1Name;
+        }
+        else {
+            score = "Win for " + player2Name;
+        }
+        return score;
+    }
+
+    private String scoreForTie() {
+        String score;
+        if(player1Score > 2) {
+            score = "Deuce";
+        }
+        else {
+            score = nameFor(player1Score) + "-All";
         }
         return score;
     }
