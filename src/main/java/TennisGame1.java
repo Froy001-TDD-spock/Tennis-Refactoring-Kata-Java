@@ -19,27 +19,22 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        if (scoresAreEqual())
-        {
+        if (scoresAreEqual()) {
             return scoreForTie();
         }
-        else if (atLeastOneScoreAbove4() && advantagePlayer1()) {
+        else if (advantagePlayer1()) {
             return advantageScoreFor(player1Name);
-
         }
-        else if(atLeastOneScoreAbove4() && advantagePlayer2()) {
+        else if(advantagePlayer2()) {
             return advantageScoreFor(player2Name);
         }
-
-        else if(atLeastOneScoreAbove4() && advantagePlayer1ByTwoOrMorePoints()) {
+        else if(winForPlayer1()) {
             return winScoreFor(player1Name);
         }
-
-        else if(atLeastOneScoreAbove4() && advantagePlayer2ByTwoOrMorePoints()) {
+        else if(winForPlayer2()) {
             return winScoreFor(player2Name);
         }
-        else
-        {
+        else {
             return scoreForBothBelow4();
         }
     }
@@ -69,20 +64,20 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private boolean advantagePlayer1ByTwoOrMorePoints() {
-        return player1Score - player2Score >= 2;
+    private boolean winForPlayer1() {
+        return atLeastOneScoreAbove4() && player1Score - player2Score >= 2;
     }
 
-    private boolean advantagePlayer2ByTwoOrMorePoints() {
-        return player2Score - player1Score >= 2;
+    private boolean winForPlayer2() {
+        return atLeastOneScoreAbove4() && player2Score - player1Score >= 2;
     }
 
     private boolean advantagePlayer2() {
-        return player1Score - player2Score == -1;
+        return atLeastOneScoreAbove4() && player1Score - player2Score == -1;
     }
 
     private boolean advantagePlayer1() {
-        return player1Score - player2Score == 1;
+        return atLeastOneScoreAbove4() && player1Score - player2Score == 1;
     }
 
     private String nameFor(int score) {
