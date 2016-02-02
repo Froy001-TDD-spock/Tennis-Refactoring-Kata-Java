@@ -19,4 +19,18 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public Boolean hasWonAgainst(Player otherPlayer) {
+        Integer advantageOverOtherPlayer = score - otherPlayer.getScore();
+        return score >= 4 && advantageOverOtherPlayer >= 2;
+    }
+
+    public Boolean hasAdvantageOver(Player otherPlayer) {
+        Integer advantageOverOtherPlayer = score - otherPlayer.getScore();
+        return score >= 4 && advantageOverOtherPlayer.equals(1);
+    }
+
+    public Boolean isInATieWith(Player otherPlayer) {
+        return score.equals(otherPlayer.getScore());
+    }
 }

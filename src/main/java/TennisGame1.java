@@ -17,24 +17,22 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        if (scoresAreEqual()) {
+        if (player1.isInATieWith(player2)) {
             return scoreForTie();
         }
-        else if (advantagePlayer1()) {
-            return advantageScoreFor(player1);
-        }
-        else if(advantagePlayer2()) {
-            return advantageScoreFor(player2);
-        }
-        else if(winForPlayer1()) {
+        if(player1.hasWonAgainst(player2)) {
             return winScoreFor(player1);
         }
-        else if(winForPlayer2()) {
+        if(player2.hasWonAgainst(player1)) {
             return winScoreFor(player2);
         }
-        else {
-            return scoreForBothBelow4();
+        if (player1.hasAdvantageOver(player2)) {
+            return advantageScoreFor(player1);
         }
+        if(player2.hasAdvantageOver(player1)) {
+            return advantageScoreFor(player2);
+        }
+        return scoreForOneToThreePoints();
     }
 
     private static String winScoreFor(Player player) {
@@ -45,7 +43,7 @@ public class TennisGame1 implements TennisGame {
         return "Advantage " + player.getName();
     }
 
-    private String scoreForBothBelow4() {
+    private String scoreForOneToThreePoints() {
         String score;
         score = nameFor(player1.getScore()) + "-" + nameFor(player2.getScore());
         return score;
@@ -60,22 +58,6 @@ public class TennisGame1 implements TennisGame {
             score = nameFor(player1.getScore()) + "-All";
         }
         return score;
-    }
-
-    private boolean winForPlayer1() {
-        return atLeastOneScoreAbove4() && player1.getScore() - player2.getScore() >= 2;
-    }
-
-    private boolean winForPlayer2() {
-        return atLeastOneScoreAbove4() && player2.getScore() - player1.getScore() >= 2;
-    }
-
-    private boolean advantagePlayer2() {
-        return atLeastOneScoreAbove4() && player1.getScore() - player2.getScore() == -1;
-    }
-
-    private boolean advantagePlayer1() {
-        return atLeastOneScoreAbove4() && player1.getScore() - player2.getScore() == 1;
     }
 
     private String nameFor(int score) {
@@ -98,11 +80,4 @@ public class TennisGame1 implements TennisGame {
         return name;
     }
 
-    private boolean atLeastOneScoreAbove4() {
-        return player1.getScore() >= 4 || player2.getScore() >=4;
-    }
-
-    private boolean scoresAreEqual() {
-        return player1.getScore() == player2.getScore();
-    }
 }
