@@ -51,14 +51,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String scoreForTie() {
-        String score;
-        if(player1.getScore() > 2) {
-            score = "Deuce";
-        }
-        else {
-            score = nameFor(player1.getScore()) + "-All";
-        }
-        return score;
+        return player1.getScore() > 2 ? "Deuce" : nameFor(player1.getScore()) + "-All";
     }
 
     private String nameFor(int score) {
