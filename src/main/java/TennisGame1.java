@@ -10,10 +10,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == player1.getName())
-            player1.wonPoint();
-        else
-            player2.wonPoint();
+        playerFrom(playerName).wonPoint();
     }
 
     public String getScore() {
@@ -33,6 +30,10 @@ public class TennisGame1 implements TennisGame {
             return advantageScoreFor(player2);
         }
         return scoreForOneToThreePoints();
+    }
+
+    private Player playerFrom(String playerName) {
+        return player1.getName() == playerName ? player1 : player2;
     }
 
     private static String winScoreFor(Player player) {
