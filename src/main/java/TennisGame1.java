@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class TennisGame1 implements TennisGame {
 
@@ -14,27 +18,21 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        TieScore tieScore = new TieScore(player1, player2);
-        if (tieScore.isAppliable()) {
-            return tieScore.toString();
+        for(Score score : possibleScores()) {
+            if(score.isAppliable()) {
+                return score.toString();
+            }
         }
-
-        WinScore winScore = new WinScore(player1, player2);
-        if(winScore.isAppliable()) {
-            return winScore.toString();
-        }
-
-        AdvantageScore advantageScore = new AdvantageScore(player1, player2);
-        if(advantageScore.isAppliable()) {
-            return advantageScore.toString();
-        }
-
-        NormalScore normalScore = new NormalScore(player1, player2);
-        if(normalScore.isAppliable()) {
-            return normalScore.toString();
-        }
-
         return "";
+    }
+
+    private List<Score> possibleScores() {
+        return asList(
+                new TieScore(player1, player2),
+                new WinScore(player1, player2),
+                new AdvantageScore(player1, player2),
+                new NormalScore(player1, player2)
+                );
     }
 
     private Player playerFrom(String playerName) {
