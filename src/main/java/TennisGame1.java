@@ -14,22 +14,19 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        if (player1.isInATieWith(player2)) {
+        if (TieScore.isAppliableTo(player1, player2)) {
             return new TieScore(player1, player2).toString();
         }
-        if(player1.hasWonAgainst(player2)) {
-            return new WinScore(player1).toString();
+        if(WinScore.isAppliableTo(player1, player2)) {
+            return new WinScore(player1, player2).toString();
         }
-        if(player2.hasWonAgainst(player1)) {
-            return new WinScore(player2).toString();
+        if(AdvantageScore.isAppliableTo(player1, player2)) {
+            return new AdvantageScore(player1, player2).toString();
         }
-        if (player1.hasAdvantageOver(player2)) {
-            return new AdvantageScore(player1).toString();
-        }
-        if(player2.hasAdvantageOver(player1)) {
-            return new AdvantageScore(player2).toString();
-        }
-        return new NormalScore(player1, player2).toString();
+        if(NormalScore.isAppliableTo(player1, player2))
+            return new NormalScore(player1, player2).toString();
+
+        return "";
     }
 
     private Player playerFrom(String playerName) {

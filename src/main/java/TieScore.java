@@ -8,6 +8,10 @@ public class TieScore {
         this.player2 = player2;
     }
 
+    public static Boolean isAppliableTo(Player player1, Player player2) {
+        return player1.isInATieWith(player2);
+    }
+
     @Override
     public String toString() {
         return player1.getScore() > 2 ? "Deuce" : nameFor(player1.getScore()) + "-All";

@@ -8,6 +8,10 @@ public class NormalScore {
         this.player2 = player2;
     }
 
+    public static Boolean isAppliableTo(Player player1, Player player2) {
+        return player1.getScore() <= 3 && player2.getScore() <= 3;
+    }
+
     @Override
     public String toString() {
         return nameFor(player1.getScore()) + "-" + nameFor(player2.getScore());
