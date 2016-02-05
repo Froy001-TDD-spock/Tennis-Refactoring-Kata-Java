@@ -1,13 +1,10 @@
-public class AdvantageScore {
-
-    private Player player1;
-    private Player player2;
+public class AdvantageScore extends Score{
 
     public AdvantageScore(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+        super(player1, player2);
     }
 
+    @Override
     public Boolean isAppliable() {
         return player1.hasAdvantageOver(player2) || player2.hasAdvantageOver(player1);
     }
