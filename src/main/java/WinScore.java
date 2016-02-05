@@ -8,7 +8,7 @@ public class WinScore {
         this.player2 = player2;
     }
 
-    public static Boolean isAppliableTo(Player player1, Player player2) {
+    public Boolean isAppliable() {
         return player1.hasWonAgainst(player2) || player2.hasWonAgainst(player1);
     }
 
