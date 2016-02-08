@@ -1,10 +1,7 @@
-import com.google.common.base.MoreObjects;
-
 import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.apache.commons.collections4.IterableUtils.find;
-import static org.apache.commons.collections4.IterableUtils.matchesAny;
 
 public class TennisGame1 implements TennisGame {
 
@@ -21,8 +18,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        Score score = find(possibleScores(), new IsAppliable());
-        return score != null ? score.toString() : "";
+        return find(possibleScores(), new IsAppliable()).toString();
     }
 
     private List<Score> possibleScores() {
@@ -30,7 +26,8 @@ public class TennisGame1 implements TennisGame {
                 new TieScore(player1, player2),
                 new WinScore(player1, player2),
                 new AdvantageScore(player1, player2),
-                new NormalScore(player1, player2)
+                new NormalScore(player1, player2),
+                new NullScore(player1, player2)
                 );
     }
 
