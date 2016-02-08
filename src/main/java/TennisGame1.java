@@ -1,3 +1,5 @@
+import com.google.common.base.MoreObjects;
+
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -19,7 +21,8 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        return matchesAny(possibleScores(), new IsAppliable()) ? find(possibleScores(), new IsAppliable()).toString() : "";
+        Score score = find(possibleScores(), new IsAppliable());
+        return score != null ? score.toString() : "";
     }
 
     private List<Score> possibleScores() {
