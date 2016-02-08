@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class TieScore extends Score {
 
     public TieScore(Player player1, Player player2) {
@@ -13,14 +16,18 @@ public class TieScore extends Score {
         return player1.getScore() > 2 ? "Deuce" : nameFor(player1.getScore()) + "-All";
     }
 
-    private String nameFor(int score) {
-        if (score == 0)
-            return "Love";
-        else if (score == 1)
-            return "Fifteen";
-        else if (score == 2)
-            return "Thirty";
-        else
-            return "";
+    private String nameFor(Integer score) {
+        return scoreNames().get(score);
+    }
+
+    private static final Map<Integer, String> scoreNames() {
+        return new HashMap<Integer, String>() {
+            private static final long serialVersionUID = 1L;
+            {
+                put(0, "Love");
+                put(1, "Fifteen");
+                put(2, "Thirty");
+            }
+        };
     }
 }
