@@ -32,7 +32,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private Player playerFrom(String playerName) {
-        return player1.getName() == playerName ? player1 : player2;
+        return player1.isCalled(playerName) ? player1 : player2;
     }
 
 }

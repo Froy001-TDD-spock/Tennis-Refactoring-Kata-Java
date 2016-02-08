@@ -16,6 +16,10 @@ public class Player {
         score++;
     }
 
+    public Boolean isCalled(String name) {
+        return this.name == name;
+    }
+
     public String getName() {
         return name;
     }
