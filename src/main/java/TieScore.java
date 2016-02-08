@@ -14,19 +14,13 @@ public class TieScore extends Score {
     }
 
     private String nameFor(int score) {
-        String name = "";
-        switch(score)
-        {
-            case 0:
-                name+="Love";
-                break;
-            case 1:
-                name+="Fifteen";
-                break;
-            case 2:
-                name+="Thirty";
-                break;
-        }
-        return name;
+        if (score == 0)
+            return "Love";
+        else if (score == 1)
+            return "Fifteen";
+        else if (score == 2)
+            return "Thirty";
+        else
+            return "";
     }
 }
