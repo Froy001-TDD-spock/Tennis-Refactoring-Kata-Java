@@ -1,7 +1,8 @@
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.apache.commons.collections4.IterableUtils.find;
+import static org.apache.commons.collections4.IterableUtils.matchesAny;
 
 public class TennisGame1 implements TennisGame {
 
@@ -18,12 +19,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        for(Score score : possibleScores()) {
-            if(score.isAppliable()) {
-                return score.toString();
-            }
-        }
-        return "";
+        return matchesAny(possibleScores(), new IsAppliable()) ? find(possibleScores(), new IsAppliable()).toString() : "";
     }
 
     private List<Score> possibleScores() {
