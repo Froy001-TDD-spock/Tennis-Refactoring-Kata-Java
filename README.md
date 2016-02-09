@@ -1,4 +1,12 @@
-## Tennis Kata
+A few notes
+===========
+
+- I have only completed the TennisGame1 refactoring so far
+- I tried to refactor using [Object Calisthenics](http://williamdurand.fr/2013/06/03/object-calisthenics/) guidelines, however I could not remove all the setters and getters (especially calls to player.getScore())
+- The requirements and starting code are from [https://github.com/emilybache/Tennis-Refactoring-Kata](https://github.com/emilybache/Tennis-Refactoring-Kata)
+
+Tennis Kata
+===========
 
 Tennis has a rather quirky scoring system, and to newcomers it can be a little difficult to keep track of. The tennis society has contracted you to build a scoreboard to display the current score during tennis games. 
 
