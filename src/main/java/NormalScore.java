@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class NormalScore extends Score {
 
     public NormalScore(Player player1, Player player2) {
@@ -13,23 +16,18 @@ public class NormalScore extends Score {
         return nameFor(player1.getScore()) + "-" + nameFor(player2.getScore());
     }
 
-    private String nameFor(int score) {
-        String name = "";
-        switch(score)
-        {
-            case 0:
-                name+="Love";
-                break;
-            case 1:
-                name+="Fifteen";
-                break;
-            case 2:
-                name+="Thirty";
-                break;
-            case 3:
-                name+="Forty";
-                break;
-        }
-        return name;
+    private String nameFor(Integer score) {
+        return scoreNames().get(score);
+    }
+
+    private static final Map<Integer, String> scoreNames() {
+        return new HashMap<Integer, String>() {
+            private static final long serialVersionUID = 1L;
+            {
+                put(0, "Love");
+                put(1, "Fifteen");
+                put(2, "Thirty");
+            }
+        };
     }
 }
